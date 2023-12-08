@@ -7,4 +7,6 @@ sudo dnf install -y bat curl fd-find fzf gh git-delta jq meld ripgrep stow teald
 echo "Install kitty terminal"
 sudo dnf install -y kitty
 
+echo "Install distrobox"
+sudo dnf install -y distrobox
 
