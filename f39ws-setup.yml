@@ -1,0 +1,53 @@
+---
+- hosts: localhost
+  vars:
+    package_list:
+      - bat
+      - curl
+      - distrobox
+      - fd-find
+      - fzf
+      - gh
+      - git-delta
+      - gitui
+      - jq
+      - lsd
+      - meld
+      - podman
+      - podman-compose
+      - podman-docker
+      - ripgrep
+      - stow
+      - tealdeer
+      - tmux
+      - tree
+      - zoxide
+      - zsh
+      - zsh-autosuggestions
+      - zsh-syntax-highlighting
+    repo_removed_list:
+      - rpmfusion-nonfree-nvidia-driver
+      - rpmfusion-nonfree-nvidia-driver-debuginfo
+      - rpmfusion-nonfree-nvidia-driver-source
+
+  tasks:
+  - name: Remove some repositories
+    yum_repository:
+      name: "{{ item }}"
+      state: absent
+    loop: "{{ repo_removed_list }}"
+
+  - name: Install base packages
+    dnf:
+      name: "{{ package_list }}"
+      state: latest
+
+  - name: Enable COPR for starship prompt
+    community.general.copr:
+      name: atim/starship
+      state: enabled
+
+  - name: Install starship prompt
+    dnf:
+      name: starship
+      state: latest
