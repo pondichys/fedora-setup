@@ -10,6 +10,7 @@
       - gh
       - git-delta
       - gitui
+      - helix
       - jq
       - lsd
       - meld
@@ -30,6 +31,9 @@
       - rpmfusion-nonfree-nvidia-driver-debuginfo
       - rpmfusion-nonfree-nvidia-driver-source
 
+    rpm_fusion_free: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    rpm_fusion_nonfree: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+  
   tasks:
   - name: Remove some repositories
     yum_repository:
@@ -37,6 +41,15 @@
       state: absent
     loop: "{{ repo_removed_list }}"
 
+  - name: Install RPM Fusion repositories
+    ansible.builtin.dnf:
+      name: 
+        - "{{ rpm_fusion_free }}"
+        - "{{ rpm_fusion_nonfree }}"
+      state: present
+      disable_gpg_check: true
+      
+    
   - name: Install base packages
     dnf:
       name: "{{ package_list }}"
