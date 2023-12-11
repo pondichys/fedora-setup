@@ -39,6 +39,7 @@
     yum_repository:
       name: "{{ item }}"
       state: absent
+      file: rpmfusion-nonfree-nvidia-driver
     loop: "{{ repo_removed_list }}"
 
   - name: Install RPM Fusion repositories
