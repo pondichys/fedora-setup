@@ -36,7 +36,7 @@
   
   tasks:
   - name: Remove some repositories
-    yum_repository:
+    ansible.builtin.yum_repository:
       name: "{{ item }}"
       state: absent
       file: rpmfusion-nonfree-nvidia-driver
@@ -52,7 +52,7 @@
       
     
   - name: Install base packages
-    dnf:
+    ansible.builtin.dnf:
       name: "{{ package_list }}"
       state: latest
 
@@ -62,6 +62,6 @@
       state: enabled
 
   - name: Install starship prompt
-    dnf:
+    ansible.builtin.dnf:
       name: starship
       state: latest
