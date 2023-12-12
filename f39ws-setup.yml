@@ -1,6 +1,14 @@
 ---
 - hosts: localhost
   vars:
+    flatpak_list:
+      - md.obsidian.Obsidian
+      - com.discordapp.Discord
+      - com.spotify.Client
+      - com.github.tchx84.Flatseal
+      - com.mattjakeman.ExtensionManager
+      - com.bitwarden.desktop
+      
     package_list:
       - bat
       - curl
@@ -76,3 +84,9 @@
       - gnome-shell-extension-dash-to-dock
       - gnome-shell-extension-forge
       state: latest
+
+  - name: Install some flatpak software
+    community.general.flatpak:
+      name: "{{ flatpak_list }}"
+      state: present
+    
