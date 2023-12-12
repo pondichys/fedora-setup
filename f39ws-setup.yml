@@ -65,3 +65,14 @@
     ansible.builtin.dnf:
       name: starship
       state: latest
+
+  - name: Install Gnome Extensions
+    ansible.builtin.dnf:
+      name:
+      - gnome-shell-extension-common
+      - gnome-shell-extension-user-theme
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-blur-my-shell
+      - gnome-shell-extension-dash-to-dock
+      - gnome-shell-extension-forge
+      state: latest
