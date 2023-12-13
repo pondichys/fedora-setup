@@ -8,6 +8,7 @@
       - com.github.tchx84.Flatseal
       - com.mattjakeman.ExtensionManager
       - com.bitwarden.desktop
+      - com.github.GradienceTeam.Gradience
       
     package_list:
       - bat
