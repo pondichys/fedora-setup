@@ -11,6 +11,7 @@
       - com.github.GradienceTeam.Gradience
       
     package_list:
+      - adw-gtk3-theme
       - bat
       - curl
       - distrobox
