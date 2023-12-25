@@ -21,6 +21,7 @@
       - gh
       - git-delta
       - gitui
+      - gnome-tweaks
       - helix
       - jq
       - lsd
@@ -85,7 +86,7 @@
       - gnome-shell-extension-appindicator
       - gnome-shell-extension-blur-my-shell
       - gnome-shell-extension-dash-to-dock
-      - gnome-shell-extension-forge
+      # - gnome-shell-extension-forge
       state: latest
 
   - name: Install some flatpak software
@@ -113,3 +114,13 @@
       name: code
       state: latest
       update_cache: true
+        
+  - name: Configure Vivaldi repository
+    ansible.builtin.yum_repository:
+      name: vivaldi 
+      description: Vivaldi
+      baseurl: https://repo.vivaldi.com/archive/rpm/x86_64
+      enabled: true
+      gpgcheck: true
+      gpgkey: https://repo.vivaldi.com/archive/linux_signing_key.pub
+      file: vivaldi
