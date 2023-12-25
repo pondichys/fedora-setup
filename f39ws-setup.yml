@@ -14,6 +14,7 @@
       - adw-gtk3-theme
       - bat
       - curl
+      - direnv
       - distrobox
       - fd-find
       - fzf
