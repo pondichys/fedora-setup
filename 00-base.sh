@@ -1,3 +1,4 @@
+#! /usr/bin/env bash
 echo "Installing Z shell"
 sudo dnf install -y zsh zsh-autosuggestions zsh-syntax-highlighting
 
