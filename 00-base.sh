@@ -32,5 +32,19 @@ sudo dnf remove -y libreoffice*
 echo "Uninstall Rhythmbox"
 sudo dnf remove -y rhythmbox
 
+echo "Configure Flathub if needed ..."
+if [ ! $(flatpak remotes | grep -c flathub) ]; then
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo > /dev/null
+fi
 
-
+echo "Installing flatpaks"
+flatpak install flathub --noninteractive -y "com.mattjakeman.ExtensionManager"
+flatpak install flathub --noninteractive -y "com.usebottles.bottles"
+flatpak install flathub --noninteractive -y "com.valvesoftware.Steam"
+# GUI for distrobox management
+flatpak install flathub --noninteractive -y "io.github.dvlv.boxbuddyrs"
+flatpak install flathub  --noninteractive -y "com.github.tchx84.Flatseal"
+flatpak install flathub --noninteractive -y "com.discordapp.Discord"
+flatpak install flathub  --noninteractive -y "md.obsidian.Obsidian"
+flatpak install flathub  --noninteractive -y "org.mozilla.Thunderbird"
+flatpak install flathub  --noninteractive -y "org.onlyoffice.desktopeditors"
