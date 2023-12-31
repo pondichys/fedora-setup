@@ -25,3 +25,12 @@ sudo dnf install -y podman-compose podman-docker
 echo "Install gnome-shell extensions"
 sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-blur-my-shell
 
+echo "Remove some unwanted/unneeded applications"
+echo "Uninstall LibreOffice ..."
+sudo dnf group remove -y @LibreOffice
+sudo dnf remove -y libreoffice*
+echo "Uninstall Rhythmbox"
+sudo dnf remove -y rhythmbox
+
+
+
