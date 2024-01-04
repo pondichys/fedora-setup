@@ -43,7 +43,7 @@ echo "Install distrobox"
 sudo dnf install -y distrobox
 
 echo "Install podman complementary packages"
-sudo dnf install -y podman-compose podman-docker podman-desktop
+sudo dnf install -y podman-compose podman-docker
 
 echo "Install gnome-shell extensions"
 sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-blur-my-shell
