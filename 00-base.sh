@@ -1,8 +1,5 @@
 #! /usr/bin/env bash
 
-# Some variables
-RPMFUSIONCOMP="rpmfusion-free-appstream-data rpmfusion-nonfree-appstream-data rpmfusion-free-release-tainted rpmfusion-nonfree-release-tainted"
-
 # Functions
 check_pkg() {
     dnf list installed "$1" 2> /dev/null
@@ -10,14 +7,20 @@ check_pkg() {
 
 # CONFIGURATION
 echo "DNF configuration"
-if [ ! $(grep -ic 'fastestmirror=' /etc/dnf/dnf.conf) ]; then
-    echo -n "Use fastest DNF mirrors"
+if ! grep -iq 'fastestmirror=' /etc/dnf/dnf.conf
+then
+    echo "Use fastest DNF mirrors"
     echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
+else
+    echo "DNF mirrors already configured -> nothing to do."
 fi
 
-if [ ! $(grep -ic 'max_parallel_dowwnloads=' /etc/dnf/dnf.conf) ]; then
-    echo -n "Use 10 parallel download streams"
+if ! grep -iq 'max_parallel_downloads=' /etc/dnf/dnf.conf
+then
+    echo "Use 10 parallel download streams"
     echo "max_parallel_downloads=10" | sudo tee -a /etc/dnf/dnf.conf
+else
+    echo "Parallel downloads already configured -> nothing to do."
 fi
 
 
@@ -85,7 +88,23 @@ sudo dnf install -y podman-compose podman-docker
 echo "Install gnome-shell extensions"
 sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-blur-my-shell gnome-shell-extension-dash-to-dock gnome-shell-extension-user-theme gnome-tweaks
 
-if [ ! check_pkg code ]
+# CODECs
+sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-plugin-libav --exclude=gstreamer1-plugins-bad-free-devel
+
+sudo dnf install lame\* --exclude=lame-devel
+
+sudo dnf group upgrade --with-optional Multimedia
+
+# Swap ffmpeg
+if check_pkg "ffmpeg-free"
+then
+    echo "Swap ffmpeg-free for ffmpeg"
+    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+else
+    sudo dnf install -y ffmpeg --allowerasing
+fi
+
+if ! check_pkg code
 then
     echo "Install VSCode from Microsoft"
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
@@ -107,7 +126,7 @@ sudo dnf install starship -y
 
 # FLATPAKS
 echo "Configure Flathub"
-if [ ! $(flatpak remotes | grep -c flathub) ]; then
+if [ ! "$(flatpak remotes | grep -c flathub)" ]; then
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo > /dev/null
 else
     echo "Flathub already configured -> nothing to do."
