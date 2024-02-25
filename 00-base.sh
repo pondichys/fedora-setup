@@ -73,6 +73,8 @@ else
 fi
 
 # PACKAGES
+echo "Install fish shell"
+sdo dnf install -y fish
 echo "Install Z shell"
 sudo dnf install -y zsh zsh-autosuggestions zsh-syntax-highlighting
 
