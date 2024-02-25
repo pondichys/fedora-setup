@@ -119,12 +119,12 @@ fi
 
 # Global git configuration
 # Configure git-delta package as diff pager
-git config --global core.pager "delta"
-git config --global interactive.diffFilter "delta --color-only"
-git config --global delta.navigation "true"
-git config --global delta.light "false"
-git config --global merge.conflicstyle "diff3"
-git config --global diff.colorMoved "default"
+# git config --global core.pager "delta"
+# git config --global interactive.diffFilter "delta --color-only"
+# git config --global delta.navigation "true"
+# git config --global delta.light "false"
+# git config --global merge.conflicstyle "diff3"
+# git config --global diff.colorMoved "default"
 
 # COPR
 # Lazygit
