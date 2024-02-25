@@ -1,8 +1,17 @@
 #! /usr/bin/env bash
 
+# Some variables
+# List of nerd fonts to download
+nf_list=(FiraCode,Hack,Meslo)
+
 # Functions
 check_pkg() {
     dnf list installed "$1" 2> /dev/null
+}
+
+# Get latest release from Github repository
+gh_get_latest_release() {
+    basename $(curl -Ls -o /dev/null -w %{url_effective} https://github.com/ryanoasis/nerd-fonts/releases/latest)
 }
 
 # CONFIGURATION
@@ -57,6 +66,12 @@ else
     echo "$HOME/.local/share/themes already exists -> nothing to do."
 fi
 
+# Install nerd fonts
+# First get latest release from Github repository
+# Then download all fonts in a for loop using nf_list variable
+# Then uncompress the zip files into $HOME/.local/share/fonts
+# unzip %font_name.zip -d $HOME/.local/share/fonts
+
 # Install RPM Fusion repositories
 echo "Enable RPM Fusion repositories"
 if ! check_pkg rpmfusion-free-release
@@ -75,6 +90,7 @@ fi
 # PACKAGES
 echo "Install fish shell"
 sdo dnf install -y fish
+
 echo "Install Z shell"
 sudo dnf install -y zsh zsh-autosuggestions zsh-syntax-highlighting
 
