@@ -111,6 +111,7 @@ sudo dnf install -y \
 
 # CODECs
 sudo dnf group install -y Multimedia
+sudo dnf groupupdate core	# Install appstream metadata for RPM Fusion
 
 # Swap ffmpeg
 if check_pkg "ffmpeg-free"
