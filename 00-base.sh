@@ -101,7 +101,13 @@ echo "Install podman complementary packages"
 sudo dnf install -y podman-compose podman-docker
 
 echo "Install gnome-shell extensions"
-sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-blur-my-shell gnome-shell-extension-dash-to-dock gnome-shell-extension-user-theme gnome-tweaks
+sudo dnf install -y \
+	gnome-shell-extension-appindicator \
+	gnome-shell-extension-blur-my-shell \
+	gnome-shell-extension-caffeine \
+	gnome-shell-extension-dash-to-dock \
+	gnome-shell-extension-user-theme \
+	gnome-tweaks
 
 # CODECs
 
@@ -124,15 +130,6 @@ then
 else
     echo "VSCode already installed -> nothing to do."
 fi
-
-# Global git configuration
-# Configure git-delta package as diff pager
-# git config --global core.pager "delta"
-# git config --global interactive.diffFilter "delta --color-only"
-# git config --global delta.navigation "true"
-# git config --global delta.light "false"
-# git config --global merge.conflicstyle "diff3"
-# git config --global diff.colorMoved "default"
 
 # COPR
 # Lazygit
