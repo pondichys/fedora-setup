@@ -88,9 +88,6 @@ else
 fi
 
 # PACKAGES
-echo "Install fish shell"
-sdo dnf install -y fish
-
 echo "Install Z shell"
 sudo dnf install -y zsh zsh-autosuggestions zsh-syntax-highlighting
 
@@ -107,11 +104,6 @@ echo "Install gnome-shell extensions"
 sudo dnf install -y gnome-shell-extension-appindicator gnome-shell-extension-blur-my-shell gnome-shell-extension-dash-to-dock gnome-shell-extension-user-theme gnome-tweaks
 
 # CODECs
-sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-plugin-libav --exclude=gstreamer1-plugins-bad-free-devel
-
-sudo dnf install -y lame\* --exclude=lame-devel
-
-sudo dnf group upgrade -y --with-optional Multimedia
 
 # Swap ffmpeg
 if check_pkg "ffmpeg-free"
