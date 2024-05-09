@@ -148,4 +148,4 @@ echo "Uninstall Rhythmbox"
 sudo dnf remove -y rhythmbox
 
 # Install chezmoi for dotfiles management in $HOME/.local/bin
-sh -c "$(curl -fsLS get.chezmoi.io/lb)
+cd "$HOME" && sh -c "$(curl -fsLS get.chezmoi.io/lb)"
