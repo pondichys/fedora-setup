@@ -121,6 +121,7 @@ else
     sudo dnf install -y ffmpeg --allowerasing
 fi
 
+# Install Visual Studio Code
 if ! check_pkg code
 then
     echo "Install VSCode from Microsoft"
