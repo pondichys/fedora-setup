@@ -110,6 +110,7 @@ sudo dnf install -y \
 	gnome-tweaks
 
 # CODECs
+sudo dnf group install -y Multimedia
 
 # Swap ffmpeg
 if check_pkg "ffmpeg-free"
