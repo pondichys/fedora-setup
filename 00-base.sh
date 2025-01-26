@@ -76,16 +76,19 @@ fi
 echo "Enable RPM Fusion repositories"
 if ! check_pkg rpmfusion-free-release
 then
-    sudo dnf install -y "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
+    sudo dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm"
 else
     echo "rpmfusion-free repository already present -> nothing to do."
 fi
 
 if ! check_pkg rpmfusion-nonfree-release; then
-    sudo dnf install -y "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
+    sudo dnf install -y "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 else
     echo "rpmfusion-nonfree repository already present -> nothing to do."
 fi
+
+echo "Enable appstream metadata for RPM Fusion"
+sudo dnf update @core
 
 # PACKAGES
 echo "Install Z shell"
