@@ -95,7 +95,7 @@ echo "Install Z shell"
 sudo dnf install -y zsh zsh-autosuggestions zsh-syntax-highlighting
 
 echo "Install base software"
-sudo dnf install -y alacritty bat curl dnf-utils fd-find fzf gh g++ git git-delta jq lsd meld neovim ripgrep stow tealdeer tmux zoxide
+sudo dnf install -y alacritty bat curl dnf-utils eza fd-find fzf gh git git-delta gum jq meld neovim ripgrep tealdeer tmux zoxide
 
 echo "Install distrobox"
 sudo dnf install -y distrobox
