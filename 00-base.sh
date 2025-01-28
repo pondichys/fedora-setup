@@ -16,13 +16,13 @@ gh_get_latest_release() {
 
 # CONFIGURATION
 echo "DNF configuration"
-if ! grep -iq 'fastestmirror=' /etc/dnf/dnf.conf
-then
-    echo "Use fastest DNF mirrors"
-    echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
-else
-    echo "DNF mirrors already configured -> nothing to do."
-fi
+#if ! grep -iq 'fastestmirror=' /etc/dnf/dnf.conf
+#then
+#    echo "Use fastest DNF mirrors"
+#    echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
+#else
+#    echo "DNF mirrors already configured -> nothing to do."
+#fi
 
 if ! grep -iq 'max_parallel_downloads=' /etc/dnf/dnf.conf
 then
